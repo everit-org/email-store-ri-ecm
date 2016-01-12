@@ -50,20 +50,20 @@ import aQute.bnd.annotation.headers.ProvideCapability;
 @StringAttributes({
     @StringAttribute(attributeId = Constants.SERVICE_DESCRIPTION,
         defaultValue = EmailStoreConstants.DEFAULT_SERVICE_DESCRIPTION,
-        priority = EmailStoreComponent.P00_SERVICE_DESCRIPTION,
+        priority = EmailStoreComponent.P_SERVICE_DESCRIPTION,
         label = "Service Description",
         description = "The description of this component configuration."
             + "It is used to easily identify the service registered by this component.") })
-@ManualService(TransactionPropagator.class)
+@ManualService(EmailStore.class)
 public class EmailStoreComponent {
 
-  public static final int P00_SERVICE_DESCRIPTION = 0;
+  public static final int P_BLOBSTORE = 3;
 
-  public static final int P01_QUERYDSL_SUPPORT = 1;
+  public static final int P_QUERYDSL_SUPPORT = 1;
 
-  public static final int P02_TRANSACTION_PROPAGATOR = 2;
+  public static final int P_SERVICE_DESCRIPTION = 0;
 
-  public static final int P03_BLOBSTORE = 3;
+  public static final int P_TRANSACTION_PROPAGATOR = 2;
 
   private Blobstore blobstore;
 
@@ -99,14 +99,14 @@ public class EmailStoreComponent {
   }
 
   @ServiceRef(attributeId = EmailStoreConstants.ATTR_BLOBSTORE, defaultValue = "",
-      attributePriority = P03_BLOBSTORE, label = "Blobstore",
+      attributePriority = P_BLOBSTORE, label = "Blobstore",
       description = "OSGi service filter for org.everit.blobstore.Blobstore.")
   public void setBlobstore(final Blobstore blobstore) {
     this.blobstore = blobstore;
   }
 
   @ServiceRef(attributeId = EmailStoreConstants.ATTR_QUERYDSL_SUPPORT, defaultValue = "",
-      attributePriority = P01_QUERYDSL_SUPPORT, label = "QuerydslSupport",
+      attributePriority = P_QUERYDSL_SUPPORT, label = "QuerydslSupport",
       description = "OSGi service filter for "
           + "org.everit.persistence.querydsl.support.QuerydslSupport.")
   public void setQuerydslSupport(final QuerydslSupport querydslSupport) {
@@ -114,7 +114,7 @@ public class EmailStoreComponent {
   }
 
   @ServiceRef(attributeId = EmailStoreConstants.ATTR_TRANSACTION_PROPAGATOR, defaultValue = "",
-      attributePriority = P02_TRANSACTION_PROPAGATOR, label = "TransactionPropagator",
+      attributePriority = P_TRANSACTION_PROPAGATOR, label = "TransactionPropagator",
       description = "OSGi service filter for "
           + "org.everit.transaction.propagator.TransactionPropagator.")
   public void setTransactionPropagator(final TransactionPropagator transactionPropagator) {
