@@ -26,8 +26,6 @@ public final class EmailStoreConstants {
 
   public static final String ATTR_TRANSACTION_PROPAGATOR = "transactionPropagator.target";
 
-  public static final String DEFAULT_SERVICE_DESCRIPTION = "Email Store Component";
-
   public static final String SERVICE_PID = "org.everit.email.store.ri.ecm.EmailStoreComponent";
 
   private EmailStoreConstants() {

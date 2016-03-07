@@ -42,14 +42,14 @@ import aQute.bnd.annotation.headers.ProvideCapability;
  * ECM component for {@link EmailStore} interface based on Email Store reference implementation.
  */
 @Component(componentId = EmailStoreConstants.SERVICE_PID,
-    configurationPolicy = ConfigurationPolicy.OPTIONAL,
+    configurationPolicy = ConfigurationPolicy.FACTORY,
     label = "Everit Email Store Component",
     description = "ECM component for Email Store")
 @ProvideCapability(ns = ECMExtenderConstants.CAPABILITY_NS_COMPONENT,
     value = ECMExtenderConstants.CAPABILITY_ATTR_CLASS + "=${@class}")
 @StringAttributes({
     @StringAttribute(attributeId = Constants.SERVICE_DESCRIPTION,
-        defaultValue = EmailStoreConstants.DEFAULT_SERVICE_DESCRIPTION,
+        defaultValue = "Email Store Component",
         priority = EmailStoreComponent.P_SERVICE_DESCRIPTION,
         label = "Service Description",
         description = "The description of this component configuration."
@@ -82,10 +82,8 @@ public class EmailStoreComponent {
 
     Hashtable<String, Object> properties = new Hashtable<>(componentContext.getProperties());
 
-    serviceRegistration = componentContext.registerService(
-        EmailStore.class,
-        emailStore,
-        properties);
+    serviceRegistration =
+        componentContext.registerService(EmailStore.class, emailStore, properties);
   }
 
   /**
